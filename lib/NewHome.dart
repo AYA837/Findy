@@ -21,10 +21,12 @@ class _NewHomeState extends State<NewHome> {
   @override
   Widget build(BuildContext context) {
    return Scaffold(
+    
           appBar: AppBar(title : const Text('file system Storage section')),
           body: Column(
+            
             children: [
-               const Text('this is the content of journal'),
+               const Text('this is the content of journal' ),
                const SizedBox(height: 20,),
                 TextField(
                 controller: textFieldController,
@@ -38,7 +40,11 @@ class _NewHomeState extends State<NewHome> {
           ),
    );
   }
-
+  @override
+  void dispose(){
+    super.dispose();
+    textFieldController.dispose();
+  }
 }
 
 //function to create the directory where we will be storing the files
@@ -53,5 +59,14 @@ Future<File> fileCreation() async {
   return File('$directory.path/file.txt');
 }
 
+
+Future<void> saveJournal() async{
+  final file =await  fileCreation();
+
+  if(await file.exists()){
+      final content = await file.writeAsString('hello world');
+      setState
+  }
+}
 
 
