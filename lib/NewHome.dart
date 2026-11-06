@@ -10,6 +10,9 @@ class NewHome extends StatefulWidget {
 }
 
 class _NewHomeState extends State<NewHome> {
+
+
+
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -18,3 +21,16 @@ class _NewHomeState extends State<NewHome> {
   }
 
 }
+
+//function to create the directory where we will be storing the files
+Future<Directory> getDirectory() async {
+  return await getApplicationCacheDirectory();
+}
+
+//creating a  file inside that directory 
+Future<File> fileCreationAndManipulation() async {
+  final directory = await getDirectory();
+
+  return File('$directory.path/file.txt');
+}
+
