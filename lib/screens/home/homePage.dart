@@ -102,21 +102,21 @@ const List<JoinedCommunity> _sampleJoined = [
   JoinedCommunity(
     title: 'Ensia Campus',
     locationLabel: 'Mahelma',
-    badgeLabel: 'Live now',
+    badgeLabel: 'Campus',
     newPostsToday: 3,
     isHighlighted: true,
   ),
   JoinedCommunity(
-    title: 'Central Metro Station',
-    locationLabel: 'Metro',
-    badgeLabel: 'Enterprise',
+    title: 'Train Station EL Djamiaa',
+    locationLabel: 'Sidi Abdallah',
+    badgeLabel: 'Transport',
     newPostsToday: 1,
   ),
 ];
 
 const List<DiscoverCommunity> _sampleDiscover = [
-  DiscoverCommunity(name: 'Grand Mall', category: 'Shopping center'),
-  DiscoverCommunity(name: 'Downtown Library', category: 'Public library'),
+  DiscoverCommunity(name: 'Better Bodies Gym', category: 'Sports Center'),
+  DiscoverCommunity(name: 'CyberParc', category: 'Scientific institution'),
 ];
 
 // ============================================================================
