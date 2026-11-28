@@ -20,6 +20,7 @@
 // ============================================================================
 
 import 'package:flutter/material.dart';
+import 'package:hello_ensia/screens/communities/browseLostItems.dart';
 
 import '../../theme/app_colors.dart';
 
@@ -35,8 +36,8 @@ enum ItemStatus { lost, found }
 /// Category of an item. Each category knows its own label and icon, so the UI
 /// never needs a big if/else to pick them.
 /// TODO(backend): add the categories your API supports (bags, ID cards, ...).
-/// 
-/// 
+///
+///
 enum ItemCategory {
   wallets('Wallets', Icons.account_balance_wallet_outlined),
   phones('Phones', Icons.smartphone_rounded),
@@ -101,7 +102,6 @@ final List<ReportedItem> _sampleLostItems = [
     status: ItemStatus.lost,
   ),
 ];
-
 
 //dummy data of found items and lost items
 final List<ReportedItem> _sampleFoundItems = [
@@ -171,7 +171,6 @@ class CommunityBrowsePage extends StatelessWidget {
             const SizedBox(height: 20),
 
             // TODO(backend): filter both lists as the user types.
-         
             const SizedBox(height: 20),
 
             // ---------------- Lost items ----------------
@@ -241,10 +240,7 @@ class BrowseHeader extends StatelessWidget {
             children: [
               const Text(
                 'Browse in',
-                style: TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 14,
-                ),
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
               ),
               const SizedBox(height: 2),
               Text(
@@ -260,7 +256,6 @@ class BrowseHeader extends StatelessWidget {
             ],
           ),
         ),
-
       ],
     );
   }
@@ -299,7 +294,6 @@ class _LivePill extends StatelessWidget {
 }
 
 //----------------------------------------------------------------------------
-
 
 // ----------------------------------------------------------------------------
 // ItemsSectionCard: a card with a colored left strip, a header
@@ -419,7 +413,32 @@ class _SectionHeader extends StatelessWidget {
         _CountBadge(count: count),
         const Spacer(), // pushes "See all" to the far right
         TextButton(
-          onPressed: onSeeAll,
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const LostItemsPage(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                      const begin = Offset(1.0, 0.0); // Start from bottom
+                      const end = Offset.zero; // End at normal position
+                      const curve = Curves.easeInOutCubicEmphasized;
+
+                      var tween = Tween(
+                        begin: begin,
+                        end: end,
+                      ).chain(CurveTween(curve: curve));
+
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                transitionDuration: const Duration(milliseconds: 500),
+              ),
+            );
+          },
           style: TextButton.styleFrom(
             foregroundColor: AppColors.accentText,
             padding: EdgeInsets.zero,
