@@ -261,37 +261,7 @@ class BrowseHeader extends StatelessWidget {
   }
 }
 
-// Small rounded pill: dot + "Live".
-class _LivePill extends StatelessWidget {
-  const _LivePill();
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 6),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColors.livePillBackground,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: const Row(
-        mainAxisSize: MainAxisSize.min, // shrink-wrap the pill to its content
-        children: [
-          Icon(Icons.circle, size: 10, color: AppColors.liveDot),
-          SizedBox(width: 6),
-          Text(
-            'Live',
-            style: TextStyle(
-              color: AppColors.accentText,
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 //----------------------------------------------------------------------------
 
