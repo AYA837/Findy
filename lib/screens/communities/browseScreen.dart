@@ -20,6 +20,7 @@
 // ============================================================================
 
 import 'package:flutter/material.dart';
+import 'package:hello_ensia/screens/communities/browseFoundItems.dart';
 import 'package:hello_ensia/screens/communities/browseLostItems.dart';
 
 import '../../theme/app_colors.dart';
@@ -194,8 +195,30 @@ class CommunityBrowsePage extends StatelessWidget {
               accentColor: AppColors.foundAccent,
               items: found,
               onSeeAll: () {
-                // TODO(navigation): open the full list of FOUND items
-                // of this community.
+               Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const FoundItemsPage(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                      const begin = Offset(1.0, 0.0); // Start from bottom
+                      const end = Offset.zero; // End at normal position
+                      const curve = Curves.easeInOutCubicEmphasized;
+
+                      var tween = Tween(
+                        begin: begin,
+                        end: end,
+                      ).chain(CurveTween(curve: curve));
+
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                transitionDuration: const Duration(milliseconds: 500),
+              ),
+            );
               },
               onItemTap: _openItemDetails,
             ),
